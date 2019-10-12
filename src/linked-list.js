@@ -1,27 +1,84 @@
 const Node = require('./node');
 
 class LinkedList {
-    constructor() {}
+    constructor() {
+        this.length = 0;
+        this._head = null;
+        this._tail = null;
+        this.list = [];
+    }
 
-    append(data) {}
+    append(data) {
+        const newInstance = new Node(data);
 
-    head() {}
+        if (this._head === null) {
+            this._head = newInstance;
+            this._tail = newInstance;
+        } else {
+            this._tail = newInstance;
+        }
 
-    tail() {}
+        this.length++;
+        this.list.push(newInstance);
 
-    at(index) {}
+        return this;
+    }
 
-    insertAt(index, data) {}
+    head() {
+     if (this.list.length === 0) {
+         return null;
+     }
+     return this.list[0].data;
+    }
 
-    isEmpty() {}
+    tail() {
+        if (this.list.length === 0) {
+            return null;
+        }
+      return this.list[this.list.length-1].data;
+    }
 
-    clear() {}
+    at(index) {
+        return this.list[index].data;
+    }
 
-    deleteAt(index) {}
+    insertAt(index, data) {
+        const newInstance = new Node(data);
+        this.list.splice(index, 0, newInstance);
+        return this;
+    }
 
-    reverse() {}
+    isEmpty() {
+        return this.list.length === 0 ? true : false;
+        
+    }
 
-    indexOf(data) {}
+    clear() {
+         this.list.length = 0;
+        this.length = 0;
+
+        return this;
+    }
+
+    deleteAt(index) {
+        this.list.splice(index, 1);
+        return this;
+    }
+
+    reverse() {
+        this.list.reverse();
+        this._head = this.list[0];
+        this._tail = this.list[this.length-1];
+        return this;
+    }
+
+    indexOf(data) {
+        function findNode(node) {
+           return node.data === data;
+            
+        }
+       return this.list.findIndex(findNode);
+    }
 }
 
 module.exports = LinkedList;

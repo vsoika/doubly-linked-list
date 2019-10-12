@@ -71,10 +71,11 @@ describe('LinkedList', () => {
     describe('#insertAt', () => {
         it('should insert data by index', () => {
             const list = new LinkedList();
-            const data = 34;
-            const position = 1;
+            const data = 115;
+            const position = 2;
 
             list.append(32);
+            list.append(34);
             list.append(47);
 
             list.insertAt(position, data);
